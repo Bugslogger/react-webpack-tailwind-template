@@ -2,12 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  line-height: normal;
+}
+
 @font-face {
   font-family: poppins;
-  src: url(/src/assets/fonts/Poppins/Poppins-Regular.ttf);
+  src: url(./assets/fonts/poppins/Poppins-Regular.ttf);
 }
 
 @font-face {
   font-family: saira;
-  src: url(/src/assets/fonts/Saira/static/Saira-Regular.ttf);
+  src: url(./assets/fonts/saira/Saira-Regular.ttf);
 }

@@ -1,19 +1,20 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 module.exports = {
-  mode: "production",
-  entry: path.resolve(__dirname, "src/index.js"),
+  entry: "./src/index.js",
+  mode: "development",
   resolve: {
     extensions: [".js", ".jsx"],
   },
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "static/[name].[chunkhash].js",
-    assetModuleFilename: "assets/[name].[ext]",
     publicPath: "/",
-    clean: true,
+    assetModuleFilename: "assets/[name][ext]",
   },
 
   module: {
@@ -88,11 +89,22 @@ module.exports = {
   },
 
   plugins: [
+    new BundleAnalyzerPlugin(),
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
       template: "public/index.html",
-      inject: true,
       //   favicon: "public/favicon.ico",
     }),
   ],
+
+  devtool: "inline-source-map",
+  devServer: {
+    host: "localhost",
+    port: 3000,
+    hot: true,
+    historyApiFallback: true,
+    open: true,
+
+    // watchContentBase: true,
+  },
 };
